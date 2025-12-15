@@ -12,3 +12,19 @@ for keyword in logs:
     keywords_from_logs.append(keyword)
 
 print(keywords_from_logs)
+
+#Wyświetlenie liczby wystąpień poszczególnych wyrazów
+
+TOTAL_NUM_OF_KEYW = 4
+number_of_occur_inf = keywords_from_logs.count('INFO') 
+info_word = (number_of_occur_inf / TOTAL_NUM_OF_KEYW) * 100
+print(f"Procentowe wystąpienie wyrazu INFO: {info_word}%")
+
+number_of_occur_warn = keywords_from_logs.count('WARNING')
+warn_word = (number_of_occur_warn / TOTAL_NUM_OF_KEYW) * 100
+print(f"Procentowe wystąpienie wyrazu WARNING: {warn_word}%")
+
+number_of_occur_err = keywords_from_logs.count('ERROR')
+err_word = (number_of_occur_err / TOTAL_NUM_OF_KEYW) * 100
+print(f"Procentowe wystąpienie wyrazu ERROR: {err_word}%")
+
