@@ -15,3 +15,5 @@ for wartosc in wartosci:
     x_norm = (wartosc - min) / (max - min)
     znormalizowana_lista.append(round(x_norm, 2))
 
+# Wyświetlenie listy
+print(znormalizowana_lista)
