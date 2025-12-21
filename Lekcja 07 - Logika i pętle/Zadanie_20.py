@@ -9,4 +9,9 @@ print(new_list)
 min = new_list[0]
 max = new_list[-1]
 
+#utworzenie listy znormalizowanej; dokonanie obliczeń
+znormalizowana_lista = []
+for wartosc in wartosci:
+    x_norm = (wartosc - min) / (max - min)
+    znormalizowana_lista.append(round(x_norm, 2))
 
