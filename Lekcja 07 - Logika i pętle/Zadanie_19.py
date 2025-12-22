@@ -16,3 +16,10 @@ for starting_state in unique_list:
     # wszystkie przejścia ustwione z wartością zero
     for ending_state in unique_list:
         sequences[starting_state][ending_state] = 0
+
+print(sequences)
+
+# zliczanie przejść
+for i in range(len(state_sequence) - 1):
+    print(state_sequence[i], state_sequence[i + 1])
+    sequences[state_sequence[i]][state_sequence[i + 1]] += 1
