@@ -1,3 +1,5 @@
+import pandas as pd
+
 state_sequence = ["A", "B", "A", "A", "C", "B", "C", "A", "B", "B"]
 
 # stworzenie listy z eliminacją duplikatów
@@ -23,3 +25,7 @@ print(sequences)
 for i in range(len(state_sequence) - 1):
     print(state_sequence[i], state_sequence[i + 1])
     sequences[state_sequence[i]][state_sequence[i + 1]] += 1
+
+# wyswietlenie tabeli (pakiet tabulate)
+df = pd.DataFrame(sequences)
+print(df.to_markdown())
