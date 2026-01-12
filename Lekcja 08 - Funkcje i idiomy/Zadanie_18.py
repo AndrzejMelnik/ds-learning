@@ -26,3 +26,5 @@ def k_fold_split(dane, k=5):
     lista = [dane[i * k_fold : (i + 1) * k_fold] for i in range(k)]
     return lista
 
+
+print(k_fold_split(dane))
