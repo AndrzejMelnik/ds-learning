@@ -7,6 +7,8 @@
     wyplac(kwota) – zmniejsza saldo (tylko jeśli wystarczy środków)
     pokaz_saldo() – wyświetla saldo """
 
+import locale
+
 class BankAccount:
 
     def __init__(self, wlasciciel, saldo):
@@ -24,3 +26,10 @@ class BankAccount:
         else:
             print("Kwota, którą chcesz wypłacić, przekracza twoje saldo.")
             print("Skoryguj kwotę.")
+
+    def pokaz_saldo(self):
+        amount = self.saldo
+
+        #część kodu wyświetlająca saldo w odpowiednim formacie waluty PLN
+        locale.setlocale(locale.LC_ALL, "pl_PL")
+        print("Twoje saldo to: ", locale.currency(amount, grouping=True))
