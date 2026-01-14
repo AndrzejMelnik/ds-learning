@@ -16,3 +16,11 @@ class BankAccount:
     def wplac(self, kwota):
         self.saldo += kwota
         print(self.saldo)
+
+    def wyplac(self, kwota):
+        if self.saldo - kwota >= 0:
+            self.saldo -= kwota
+            print(self.saldo)
+        else:
+            print("Kwota, którą chcesz wypłacić, przekracza twoje saldo.")
+            print("Skoryguj kwotę.")
