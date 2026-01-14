@@ -28,3 +28,18 @@ class Student:
         """Wyświetlamy obiekt"""
         return (f"Student: {self.imie}; numer indeksu: {self.numer_indeksu};"
                 f" średnia ocen: {self.srednia()}")
+
+ja = Student("Andrzej",4546, [4, 5])
+ja.dodaj_ocene(4)
+print(ja.srednia())
+print(ja.__str__())
+
+ty = Student("Franek", 4324, [2,5,3,3])
+ty.dodaj_ocene(4)
+print(ty.srednia())
+print(ty.__str__())
+
+ona = Student("Olga", 3434, [5,5,3])
+ona.dodaj_ocene(3)
+print(ona.srednia())
+print(ona.__str__())
