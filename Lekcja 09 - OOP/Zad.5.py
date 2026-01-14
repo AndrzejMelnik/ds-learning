@@ -23,3 +23,8 @@ class Student:
             suma += note
         score = round(suma / len(self.oceny),2)
         return score
+
+    def __str__(self):
+        """Wyświetlamy obiekt"""
+        return (f"Student: {self.imie}; numer indeksu: {self.numer_indeksu};"
+                f" średnia ocen: {self.srednia()}")
