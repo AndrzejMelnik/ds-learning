@@ -12,3 +12,7 @@ class BankAccount:
     def __init__(self, wlasciciel, saldo):
         self.wlasciciel = wlasciciel
         self.saldo = saldo
+
+    def wplac(self, kwota):
+        self.saldo += kwota
+        print(self.saldo)
