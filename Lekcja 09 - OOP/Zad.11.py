@@ -18,7 +18,8 @@ class Uczen:
         self.imie = imie
         self.oceny = oceny
 
-
+    def __str__(self):
+        return f"{self.imie} oceny: {self.oceny}"
 
 
 class Klasa:
