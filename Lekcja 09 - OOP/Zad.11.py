@@ -40,9 +40,28 @@ class Klasa:
 
     def najlepszy_uczen(self):
         best_uczen = self.uczniowie[0]
-        best_ocena = sum(best_uczen.oceny)
+        best_avg = mean(best_uczen.oceny)
         for uczen in self.uczniowie:
-            if sum(uczen.oceny) > best_ocena:
+            avg = mean(uczen.oceny)
+            if avg > best_avg:
                 best_uczen = uczen
+                best_avg = avg
         avg = mean(best_uczen.oceny)
-        print(best_uczen, avg)
+        print(best_uczen, best_avg)
+
+uczen_1 = Uczen("Andrzej", [3, 4, 5, 5,])
+uczen_2 = Uczen("Gosia", [5, 5, 5, 4])
+uczen_3 = Uczen("Franek", [3, 3, 4, 4])
+uczen_4 = Uczen("Jola", [4, 4, 4, 6])
+uczen_5 = Uczen("Maria", [3, 4, 4, 5])
+
+
+
+moja_klasa = Klasa("7b", [uczen_1, uczen_2, uczen_3,
+                          uczen_4,uczen_5])
+moja_klasa.dodaj_ucznia(Uczen("Basia", [1, 1, 5, 5]))
+moja_klasa.najlepszy_uczen()
+
+print(moja_klasa.srednia_klasy())
+
+
