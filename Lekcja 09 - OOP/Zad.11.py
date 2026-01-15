@@ -35,3 +35,13 @@ class Klasa:
         for uczen in self.uczniowie:
             wszystkie_oceny.extend(uczen.oceny)
         return round(mean(wszystkie_oceny), 2)
+
+
+    def najlepszy_uczen(self):
+        best_uczen = self.uczniowie[0]
+        best_ocena = sum(best_uczen.oceny)
+        for uczen in self.uczniowie:
+            if sum(uczen.oceny) > best_ocena:
+                best_uczen = uczen
+        avg = mean(best_uczen.oceny)
+        print(best_uczen, avg)
