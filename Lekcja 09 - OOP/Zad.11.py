@@ -24,3 +24,6 @@ class Klasa:
     def __init__(self, nazwa, uczniowie=[]):
         self.nazwa = nazwa
         self.uczniowie = uczniowie
+
+    def dodaj_ucznia(self, uczen):
+        self.uczniowie.append(uczen)
