@@ -11,6 +11,7 @@ srednia_klasy() – średnia ocen wszystkich uczniów
 najlepszy_uczen() – zwraca ucznia z najwyższą średnią """
 
 
+from statistics import mean
 
 class Uczen:
     def __init__(self, imie, oceny=[]):
