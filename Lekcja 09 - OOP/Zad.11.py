@@ -28,3 +28,10 @@ class Klasa:
 
     def dodaj_ucznia(self, uczen):
         self.uczniowie.append(uczen)
+
+
+    def srednia_klasy(self):
+        wszystkie_oceny = []
+        for uczen in self.uczniowie:
+            wszystkie_oceny.extend(uczen.oceny)
+        return round(mean(wszystkie_oceny), 2)
