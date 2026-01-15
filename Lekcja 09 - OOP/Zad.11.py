@@ -47,7 +47,13 @@ class Klasa:
                 best_uczen = uczen
                 best_avg = avg
         avg = mean(best_uczen.oceny)
-        print(best_uczen, best_avg)
+        print(f"Najlepszy uczeń: {best_uczen}, średnia: {best_avg}")
+
+    def __str__(self):
+        lista = " "
+        for uczen in self.uczniowie:
+            lista += str(uczen)
+        return f"{self.nazwa}: {lista}"
 
 uczen_1 = Uczen("Andrzej", [3, 4, 5, 5,])
 uczen_2 = Uczen("Gosia", [5, 5, 5, 4])
@@ -62,6 +68,6 @@ moja_klasa = Klasa("7b", [uczen_1, uczen_2, uczen_3,
 moja_klasa.dodaj_ucznia(Uczen("Basia", [1, 1, 5, 5]))
 moja_klasa.najlepszy_uczen()
 
-print(moja_klasa.srednia_klasy())
+print(f"Srednia klasy: ",moja_klasa.srednia_klasy())
 
 
