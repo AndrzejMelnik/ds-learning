@@ -34,3 +34,8 @@ exams_with_bonus = exams + bonus
 print("Egzaminy z bonusem: ", exams_with_bonus)
 
 
+# konieczność zmiany kształtu tablicy
+exams_multip = exams_with_bonus * multiplier.reshape(5, 1)
+print("Przemnożone egzaminy: ", exams_multip)
+
+
