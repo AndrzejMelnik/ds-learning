@@ -30,5 +30,7 @@ print("Shape dla 'bonus': ", bonus.shape)
 multiplier = np.array([1.0, 1.1, 0.95, 1.15, 1.0])
 print("Shape dla mnożnika: ", multiplier.shape)
 
+exams_with_bonus = exams + bonus
+print("Egzaminy z bonusem: ", exams_with_bonus)
 
 
