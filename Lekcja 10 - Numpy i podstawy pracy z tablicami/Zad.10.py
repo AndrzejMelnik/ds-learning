@@ -27,7 +27,8 @@ print("Shape dla 'exams': ", exams.shape)
 bonus = np.array([5, 10, 5, 10])
 print("Shape dla 'bonus': ", bonus.shape)
 
-
+multiplier = np.array([1.0, 1.1, 0.95, 1.15, 1.0])
+print("Shape dla mnożnika: ", multiplier.shape)
 
 
 
