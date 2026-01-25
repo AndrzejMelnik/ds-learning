@@ -21,4 +21,11 @@ titanic_feat['Family_Size'] = titanic_feat['SibSp'] + titanic_feat['Parch'] + 1
 surv_rate = titanic_feat.groupby('Family_Size')['Survived'].mean()
 print(surv_rate)
 
+titanic_feat['Survived_Rating'] = (
+    surv_rate
+)
+
+print(titanic_feat.head())
+
+
 
