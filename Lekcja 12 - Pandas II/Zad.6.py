@@ -13,7 +13,7 @@ Wykres słupkowy """
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-from matplotlib.pyplot import legend
+
 
 titanic_data = pd.read_csv('titanic.csv')
 
