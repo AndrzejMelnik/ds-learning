@@ -12,7 +12,13 @@ Tabela z survival rate według Family_Size
 Wykres słupkowy """
 
 import pandas as pd
+
 titanic_data = pd.read_csv('titanic.csv')
 
 titanic_feat = titanic_data.copy()
 titanic_feat['Family_Size'] = titanic_feat['SibSp'] + titanic_feat['Parch'] + 1
+
+surv_rate = titanic_feat.groupby('Family_Size')['Survived'].mean()
+print(surv_rate)
+
+
