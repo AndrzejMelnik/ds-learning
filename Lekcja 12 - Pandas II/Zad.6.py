@@ -27,5 +27,12 @@ titanic_feat['Survived_Rating'] = (
 
 print(titanic_feat.head())
 
+family_size_surv_rate = surv_rate.sort_values(ascending=False)
+table = pd.DataFrame({"Family Size": family_size_surv_rate.index,
+                      "Survived_Rating": family_size_surv_rate.values
+                      })
+
+print(table.head(10))
+
 
 
