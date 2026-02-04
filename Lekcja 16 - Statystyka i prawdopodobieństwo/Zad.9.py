@@ -38,3 +38,13 @@ plt.ylabel("Stopień prawdopodobieństwa")
 plt.legend()
 plt.grid(True)
 plt.show()
+
+
+#Średnia teoretyczna i empiryczna
+
+th_mean = n * p # 20 * 0.5
+print("Srednia arytmetyczna(teoretyczna): ", th_mean)
+
+emp_mean = np.mean(coin_flips)
+print("Średnia empiryczna: ", emp_mean)
+
