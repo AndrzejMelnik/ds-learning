@@ -34,3 +34,9 @@ print(outliers)
 
 without_outliers = df[df['zscore'].abs() <= 3]
 print(without_outliers)
+
+
+
+#########################################                               
+#####  Brak boxplotów i statystyk   #####
+#########################################
