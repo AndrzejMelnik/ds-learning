@@ -28,3 +28,6 @@ print(df)
 zscore = stats.zscore(df['alcohol'])
 df['zscore'] = zscore
 print(df[['alcohol', 'zscore']])
+
+outliers = df[df['zscore'].abs()  > 3]
+print(outliers)
