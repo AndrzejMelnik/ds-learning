@@ -12,6 +12,7 @@ Boxplot przed i po usunięciu
 Porównanie statystyk (mean, median, std)"""
 
 import pandas as pd
+from scipy import stats
 
 url = ("https://archive.ics.uci.edu/ml/machine-learning-databases"
        "/wine-quality/winequality-red.csv")
@@ -20,3 +21,10 @@ print("Dataset Jakości Win:")
 print(wine.head())
 print("\nInfo:")
 print(wine.info())
+
+df = pd.DataFrame(wine, columns=['alcohol'])
+print(df)
+
+zscore = stats.zscore(df['alcohol'])
+df['zscore'] = zscore
+print(df[['alcohol', 'zscore']])
