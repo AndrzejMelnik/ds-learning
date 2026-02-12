@@ -15,3 +15,6 @@ dates = pd.date_range('2025-01-01', periods=100)
 price = 100 + np.cumsum(np.random.randn(100))
 df = pd.DataFrame({'date': dates, 'price': price})
 print(df)
+
+fig, ax = plt.subplots(3, 1, figsize=(18, 14))
+ax = ax.flatten()
