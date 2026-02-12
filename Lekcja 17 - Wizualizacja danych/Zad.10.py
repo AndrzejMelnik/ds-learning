@@ -31,3 +31,7 @@ ax[0].set_ylabel('Cena akcji', fontsize=12)
 df['7-dniowa średnia krocząca'] = df['price'].rolling(window=7,
                                     min_periods=1).mean()
 print(df)
+
+ax[1].plot(df['date'], df['7-dniowa średnia krocząca'])
+ax[1].set_title("7-dniowa średnia krocząca")
+ax[1].set_ylabel('Cena akcji', fontsize=12)
