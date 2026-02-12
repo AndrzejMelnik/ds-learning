@@ -44,3 +44,5 @@ ax[2].set_title("21-dniowa średnia krocząca")
 ax[2].set_xlabel('Data', fontsize=12)
 ax[2].set_ylabel('Cena akcji', fontsize=12)
 
+fig.autofmt_xdate()
+plt.show()
