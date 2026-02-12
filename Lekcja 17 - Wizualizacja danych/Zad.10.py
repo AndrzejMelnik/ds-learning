@@ -18,3 +18,16 @@ print(df)
 
 fig, ax = plt.subplots(3, 1, figsize=(18, 14))
 ax = ax.flatten()
+
+#Pierwszy wykres - Główna linia ceny
+ax[0].plot(df['date'], df['price'], color='#2E86AB', # kolor hex
+           linewidth=2.5,
+           marker='o', # okrągłe markery
+           markersize=8,
+           markerfacecolor='white',
+           markeredgewidth=2)
+ax[0].set_title("Wykres cen akcji w czasie")
+ax[0].set_ylabel('Cena akcji', fontsize=12)
+df['7-dniowa średnia krocząca'] = df['price'].rolling(window=7,
+                                    min_periods=1).mean()
+print(df)
