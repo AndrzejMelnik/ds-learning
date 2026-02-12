@@ -46,3 +46,5 @@ ax[2].set_ylabel('Cena akcji', fontsize=12)
 
 fig.autofmt_xdate()
 plt.show()
+
+#Brak zacienionego obszaru między MA7 a MA21
