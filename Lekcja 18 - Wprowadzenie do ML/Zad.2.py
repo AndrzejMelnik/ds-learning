@@ -10,6 +10,7 @@ Wydrukuj wyniki w formie tabeli"""
 
 import sklearn
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
 wine = sklearn.datasets.load_wine()
 X, y = wine.data, wine.target
@@ -19,3 +20,7 @@ X, y, test_size=0.3, random_state=42,stratify=y)
 
 print(f"Rozmiar zbioru treningowego: {X_train.shape[0]}")
 print(f"Rozmiar zbioru testowego: {X_test.shape[0]}")
+
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train) # fit + transform na train
+X_test_scaled = scaler.transform(X_test)
