@@ -11,6 +11,13 @@ Oczekiwany rezultat:
     Wykres learning curves
     Analiza overfitting/underfitting"""
 from sklearn.datasets import load_breast_cancer
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import StandardScaler
 
 data = load_breast_cancer()
 X, y = data.data, data.target
+
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+model = LogisticRegression(max_iter=1000, random_state=42)
