@@ -10,6 +10,7 @@ Oczekiwany rezultat:
     Tabela z metrykami (mean ± std)
     Boxplot metryk z CV"""
 import pandas as pd
+from matplotlib import pyplot as plt
 from sklearn.datasets import load_breast_cancer
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import StratifiedKFold, cross_validate
@@ -47,3 +48,15 @@ table = pd.DataFrame({
     ]
 })
 print(table)
+
+boxplot_data = [
+    cross_val['test_accuracy'],
+    cross_val['test_precision'],
+    cross_val['test_recall'],
+    cross_val['test_f1']
+]
+plt.figure(figsize=(10, 6))
+plt.boxplot(boxplot_data, tick_labels=['Accuracy', 'Precision', 'Recall', 'F1-score'])
+plt.title('Rozkład metryk Cross-Validation (Breast Cancer)')
+plt.ylabel('Wartość poszczególnej metryki')
+plt.show()
