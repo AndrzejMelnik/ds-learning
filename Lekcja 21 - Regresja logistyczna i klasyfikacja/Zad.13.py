@@ -1,0 +1,24 @@
+"""Zadanie 13 – Precision-Recall tradeoff
+    Zbadaj trade-off między Precision a Recall dla różnych progów.
+Dataset:
+    Niezbalansowany dataset (95:5)
+Wymagania:
+    Wygeneruj dane z make_classification (weights=[0.95, 0.05])
+    Dla progów od 0.1 do 0.9 oblicz Precision i Recall
+    Znajdź próg dający najlepszy balans (F1)
+    Znajdź próg maksymalizujący Recall przy Precision > 0.5
+Oczekiwany rezultat
+    Wykres: Precision i Recall vs próg
+    Analiza trade-offu"""
+
+from sklearn.datasets import make_classification
+
+X, y = make_classification(
+n_samples=1000,
+n_features=20,
+n_informative=10,
+n_redundant=5,
+n_classes=2,
+weights=[0.95, 0.05],
+random_state=42
+)
