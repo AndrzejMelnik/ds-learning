@@ -9,8 +9,7 @@ Wymagania:
 Oczekiwany rezultat:
     Tabela z metrykami (mean ± std)
     Boxplot metryk z CV"""
-
-
+import pandas as pd
 from sklearn.datasets import load_breast_cancer
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import StratifiedKFold, cross_validate
@@ -31,3 +30,20 @@ score_list = ['accuracy', 'precision', 'recall', 'f1']
 cross_val = cross_validate(model, X_scaled, y, cv=strat_fold,
                            scoring=score_list)
 
+#Tabela z naszymi wynikami
+table = pd.DataFrame({
+    'Metryki': ['Accuracy', 'Precision', 'Recall', 'F1-score'],
+    'Średnia': [
+        cross_val['test_accuracy'].mean(),
+        cross_val['test_precision'].mean(),
+        cross_val['test_recall'].mean(),
+        cross_val['test_f1'].mean()
+    ],
+    'Odchylenie standardowe': [
+        cross_val['test_accuracy'].std(),
+        cross_val['test_precision'].std(),
+        cross_val['test_recall'].std(),
+        cross_val['test_f1'].std()
+    ]
+})
+print(table)
