@@ -25,7 +25,7 @@ model = LogisticRegression(max_iter=1000, random_state=42)
 
 #Walidacja krzyżowa
 strat_fold = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
-score_list = ['accuracy', 'precision', 'recall', 'f1']
+score_list = ['accuracy', 'precision', 'recall', 'f1'] #do obliczenia
 
 cross_val = cross_validate(model, X_scaled, y, cv=strat_fold,
                            scoring=score_list)
