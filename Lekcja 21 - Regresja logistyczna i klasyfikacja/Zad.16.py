@@ -13,6 +13,7 @@ Oczekiwany rezultat:
 
 from sklearn.datasets import load_breast_cancer
 from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import StratifiedKFold, cross_validate
 from sklearn.preprocessing import StandardScaler
 
 data = load_breast_cancer()
@@ -22,3 +23,11 @@ scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
 model = LogisticRegression(max_iter=1000, random_state=42)
+
+#Walidacja krzyżowa
+strat_fold = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+score_list = ['accuracy', 'precision', 'recall', 'f1']
+
+cross_val = cross_validate(model, X_scaled, y, cv=strat_fold,
+                           scoring=score_list)
+
