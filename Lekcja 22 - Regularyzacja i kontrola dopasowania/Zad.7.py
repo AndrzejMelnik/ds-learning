@@ -6,7 +6,7 @@ sklearn.datasets.fetch_california_housing()
 RidgeCV z cv=5
 alphas = np.logspace(-4, 4, 100)
 Ewaluacja na oddzielnym zbiorze testowym"""
-
+import numpy as np
 from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -21,3 +21,5 @@ random_state=42)
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
+
+alphas = np.logspace(-4, 4, 100)
