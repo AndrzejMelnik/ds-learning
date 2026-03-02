@@ -9,6 +9,7 @@ Wypisz nazwy aktywnych cech
     Oczekiwany rezultat:
 Alpha, liczba niezerowych cech, lista aktywnych cech"""
 
+import numpy as np
 from sklearn.datasets import fetch_california_housing
 from sklearn.linear_model import LassoCV
 from sklearn.model_selection import train_test_split
@@ -17,6 +18,7 @@ from sklearn.preprocessing import StandardScaler
 california = fetch_california_housing()
 X = california.data
 y = california.target
+feature_names = california.feature_names
 
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
@@ -29,3 +31,11 @@ X_test_scaled = scaler.transform(X_test)
 lasso_cv = LassoCV(cv=5, max_iter=10000, random_state=42)
 lasso_cv.fit(X_train_scaled, y_train)
 print(f"Optymalne alpha: {lasso_cv.alpha_:.6f}")
+
+for name, coef in sorted(zip(feature_names, lasso_cv.coef_), key=lambda x:
+abs(x[1]), reverse=True):
+    status = "✓ AKTYWNA" if abs(coef) > 1e-6 else "✗ wyzerowana"
+    print(f" {name}: {coef:.4f} {status}")
+
+n_nonzero = np.sum(np.abs(lasso_cv.coef_) > 1e-6)
+print(f"\nLiczba aktywnych cech: {n_nonzero}/{len(feature_names)}")
