@@ -8,6 +8,7 @@ alphas = np.logspace(-4, 4, 100)
 Ewaluacja na oddzielnym zbiorze testowym"""
 import numpy as np
 from sklearn.datasets import fetch_california_housing
+from sklearn.linear_model import RidgeCV
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
@@ -23,3 +24,6 @@ X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
 alphas = np.logspace(-4, 4, 100)
+
+ridge_cv = RidgeCV(alphas=alphas, cv=5, scoring='neg_mean_squared_error')
+ridge_cv.fit(X_train_scaled, y_train)
