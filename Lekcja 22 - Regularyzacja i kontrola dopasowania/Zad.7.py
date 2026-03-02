@@ -32,3 +32,5 @@ print(f"Optymalne alpha: {ridge_cv.alpha_:.4f}")
 
 y_pred_test = ridge_cv.predict(X_test_scaled)
 y_pred_train = ridge_cv.predict(X_train_scaled)
+
+print(f"Test R²: {r2_score(y_test, y_pred_test):.4f}")
