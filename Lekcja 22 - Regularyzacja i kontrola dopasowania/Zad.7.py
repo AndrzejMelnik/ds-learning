@@ -27,3 +27,4 @@ alphas = np.logspace(-4, 4, 100)
 
 ridge_cv = RidgeCV(alphas=alphas, cv=5, scoring='neg_mean_squared_error')
 ridge_cv.fit(X_train_scaled, y_train)
+print(f"Optymalne alpha: {ridge_cv.alpha_:.4f}")
