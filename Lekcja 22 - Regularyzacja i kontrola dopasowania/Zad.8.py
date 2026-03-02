@@ -28,3 +28,4 @@ X_test_scaled = scaler.transform(X_test)
 
 lasso_cv = LassoCV(cv=5, max_iter=10000, random_state=42)
 lasso_cv.fit(X_train_scaled, y_train)
+print(f"Optymalne alpha: {lasso_cv.alpha_:.6f}")
