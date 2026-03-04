@@ -8,7 +8,8 @@ Wskaż optymalna wartosc k
 Wykres z zaznaczonym optymalnym k"""
 
 from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler
 
 iris = load_iris()
@@ -21,3 +22,12 @@ X_train, X_test, y_train, y_test = train_test_split(
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
+
+k_range = range(1, 31)
+cv_scores = []
+
+for k in k_range:
+    knn = KNeighborsClassifier(n_neighbors=k)
+    scores = cross_val_score(knn, X_train_scaled, y_train, cv=5,
+    scoring='accuracy')
+    cv_scores.append(scores.mean())
