@@ -6,7 +6,7 @@ Wskaż optymalna wartosc k
 
     Oczekiwany wynik:
 Wykres z zaznaczonym optymalnym k"""
-
+import numpy as np
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.neighbors import KNeighborsClassifier
@@ -31,3 +31,7 @@ for k in k_range:
     scores = cross_val_score(knn, X_train_scaled, y_train, cv=5,
     scoring='accuracy')
     cv_scores.append(scores.mean())
+
+best_k = list(k_range)[np.argmax(cv_scores)]
+print(f"Optymalna wartość k: {best_k}")
+
