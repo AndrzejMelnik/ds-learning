@@ -35,3 +35,5 @@ for k in k_range:
 best_k = list(k_range)[np.argmax(cv_scores)]
 print(f"Optymalna wartość k: {best_k}")
 
+for k, score in zip(k_range, cv_scores):
+    print(f"Średnie Accuracy dla k = {k} -> {score:.4f}")
