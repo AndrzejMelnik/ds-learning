@@ -63,3 +63,4 @@ for name, mlp in configs.items():
         'Czas treningu [s]': round(elapsed, 4),
         'Liczba epok': mlp.n_iter_
     }
+    plt.plot(mlp.loss_curve_, label=f'{name} (Epoki: {mlp.n_iter_})')
