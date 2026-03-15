@@ -64,3 +64,7 @@ for name, mlp in configs.items():
         'Liczba epok': mlp.n_iter_
     }
     plt.plot(mlp.loss_curve_, label=f'{name} (Epoki: {mlp.n_iter_})')
+
+df_results = pd.DataFrame(results).T
+print("\n=== TABELA PORÓWNAWCZA (Zadanie 8) ===")
+print(df_results)
