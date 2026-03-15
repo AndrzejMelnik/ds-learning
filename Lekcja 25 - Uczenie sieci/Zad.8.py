@@ -9,8 +9,11 @@ Porownaj: epoki, czas, accuracy
 
     Oczekiwany wynik:
 Tabela porownawcza i wykresy loss"""
+import time
 
+from matplotlib import pyplot as plt
 from sklearn.datasets import load_breast_cancer
+from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import StandardScaler
@@ -43,3 +46,20 @@ configs = {
         random_state=42
     )
 }
+
+results = {}
+plt.figure(figsize=(10, 6))
+
+for name, mlp in configs.items():
+    start = time.time()
+    mlp.fit(X_train_sc, y_train)
+    elapsed = time.time() - start
+
+    y_pred = mlp.predict(X_test_sc)
+    acc = accuracy_score(y_test, y_pred)
+
+    results[name] = {
+        'Accuracy': acc,
+        'Czas treningu [s]': round(elapsed, 4),
+        'Liczba epok': mlp.n_iter_
+    }
