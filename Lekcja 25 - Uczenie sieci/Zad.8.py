@@ -34,3 +34,12 @@ configs = {
         early_stopping=False,
         random_state=42
     ),
+    'with early stopping': MLPClassifier(
+        hidden_layer_sizes=(64, 32),
+        solver='adam',
+        max_iter=1000,
+        early_stopping=True,
+        validation_fraction=0.15,
+        random_state=42
+    )
+}
