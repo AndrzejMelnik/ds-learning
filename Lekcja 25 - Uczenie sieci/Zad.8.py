@@ -9,8 +9,9 @@ Porownaj: epoki, czas, accuracy
 
     Oczekiwany wynik:
 Tabela porownawcza i wykresy loss"""
-import time
 
+import time
+import pandas as pd
 from matplotlib import pyplot as plt
 from sklearn.datasets import load_breast_cancer
 from sklearn.metrics import accuracy_score
@@ -68,3 +69,10 @@ for name, mlp in configs.items():
 df_results = pd.DataFrame(results).T
 print("\n=== TABELA PORÓWNAWCZA (Zadanie 8) ===")
 print(df_results)
+
+plt.xlabel('Epoka')
+plt.ylabel('Loss (Cross-Entropy)')
+plt.title('Wpływ Early Stopping na proces uczenia (Breast Cancer)')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.show()
