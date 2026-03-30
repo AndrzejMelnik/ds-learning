@@ -8,9 +8,12 @@ EarlyStopping + ReduceLROnPlateau
 Krzywe uczenia (loss, accuracy)
 Confusion matrix z nazwami klas
 Analiza bledow"""
+
 import numpy as np
 from tensorflow import keras
 from tensorflow.keras import layers
+from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
+import time
 
 class_names = ['T-shirt', 'Trouser', 'Pullover', 'Dress', 'Coat',
                'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
@@ -50,3 +53,14 @@ model = keras.Sequential([
     layers.Dropout(0.5),
     layers.Dense(10, activation='softmax')
 ])
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+callbacks = [
+    EarlyStopping(monitor='val_loss', patience=7, restore_best_weights=True),
+    ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=3, min_lr=1e-6)
+]
+
+start = time.time()
+history = model.fit(x_train, y_train, epochs=30, batch_size=128,
+                    validation_data=(x_val, y_val), callbacks=callbacks, verbose=1)
+print(f"\nCzas treningu: {time.time() - start:.1f}s")
