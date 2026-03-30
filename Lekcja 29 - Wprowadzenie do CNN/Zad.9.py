@@ -20,3 +20,6 @@ x_train = x_train.astype("float32") / 255.0
 x_test = x_test.astype("float32") / 255.0
 x_train = x_train[..., np.newaxis]
 x_test = x_test[..., np.newaxis]
+
+x_val, y_val = x_train[-10000:], y_train[-10000:]
+x_train, y_train = x_train[:-10000], y_train[:-10000]
