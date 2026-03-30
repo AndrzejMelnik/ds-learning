@@ -14,6 +14,9 @@ from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
 import time
+import matplotlib.pyplot as plt
+from sklearn.metrics import classification_report, confusion_matrix
+import seaborn as sns
 
 class_names = ['T-shirt', 'Trouser', 'Pullover', 'Dress', 'Coat',
                'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
@@ -64,3 +67,28 @@ start = time.time()
 history = model.fit(x_train, y_train, epochs=30, batch_size=128,
                     validation_data=(x_val, y_val), callbacks=callbacks, verbose=1)
 print(f"\nCzas treningu: {time.time() - start:.1f}s")
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5))
+ax1.plot(history.history['loss'], label='Train Loss')
+ax1.plot(history.history['val_loss'], label='Val Loss')
+ax1.set_title('Krzywa Straty (Loss)')
+ax1.legend()
+
+ax2.plot(history.history['accuracy'], label='Train Acc')
+ax2.plot(history.history['val_accuracy'], label='Val Acc')
+ax2.set_title('Krzywa Dokładności (Accuracy)')
+ax2.legend()
+plt.show()
+
+y_pred = model.predict(x_test, verbose=0).argmax(axis=1)
+cm = confusion_matrix(y_test, y_pred)
+
+plt.figure(figsize=(10, 8))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=class_names, yticklabels=class_names)
+plt.xlabel('Predykcja')
+plt.ylabel('Prawda')
+plt.title('Macierz Pomyłek - Fashion MNIST')
+plt.show()
+
+print("\nRaport klasyfikacji:")
+print(classification_report(y_test, y_pred, target_names=class_names))
