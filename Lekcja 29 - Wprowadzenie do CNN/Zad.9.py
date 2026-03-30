@@ -9,7 +9,8 @@ Krzywe uczenia (loss, accuracy)
 Confusion matrix z nazwami klas
 Analiza bledow"""
 import numpy as np
-from tqdm import keras
+from tensorflow import keras
+from tensorflow.keras import layers
 
 class_names = ['T-shirt', 'Trouser', 'Pullover', 'Dress', 'Coat',
                'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
@@ -23,3 +24,29 @@ x_test = x_test[..., np.newaxis]
 
 x_val, y_val = x_train[-10000:], y_train[-10000:]
 x_train, y_train = x_train[:-10000], y_train[:-10000]
+
+model = keras.Sequential([
+    layers.Input(shape=(28, 28, 1)),
+
+    # Blok 1: 32 filtry
+    layers.Conv2D(32, (3, 3), padding='same', activation='relu'),
+    layers.BatchNormalization(),
+    layers.MaxPooling2D((2, 2)),
+    layers.Dropout(0.25),
+
+    # Blok 2: 64 filtry
+    layers.Conv2D(64, (3, 3), padding='same', activation='relu'),
+    layers.BatchNormalization(),
+    layers.MaxPooling2D((2, 2)),
+    layers.Dropout(0.25),
+
+    # Blok 3: 128 filtrów + GAP [6, 7]
+    layers.Conv2D(128, (3, 3), padding='same', activation='relu'),
+    layers.BatchNormalization(),
+    layers.GlobalAveragePooling2D(),
+
+    # Klasyfikator Dense
+    layers.Dense(128, activation='relu'),
+    layers.Dropout(0.5),
+    layers.Dense(10, activation='softmax')
+])
