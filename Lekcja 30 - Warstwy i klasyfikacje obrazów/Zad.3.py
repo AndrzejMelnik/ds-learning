@@ -12,3 +12,8 @@ from tensorflow.keras import layers
 def build_model(conv_type='standard'):
     model = keras.Sequential(name=f"Model_{conv_type}")
     model.add(layers.Input(shape=(32, 32, 3)))
+
+    if conv_type == 'standard':
+        conv_layer = layers.Conv2D
+    else:
+        conv_layer = layers.SeparableConv2D
