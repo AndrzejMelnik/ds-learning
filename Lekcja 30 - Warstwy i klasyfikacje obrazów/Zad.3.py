@@ -41,3 +41,6 @@ params_sep = model_sep.count_params()
 print(f"Liczba parametrów (Conv2D):          {params_std:,}")
 print(f"Liczba parametrów (SeparableConv2D): {params_sep:,}")
 print(f"Różnica: SeparableConv2D jest {params_std / params_sep:.1f}x mniejszy.")
+
+model_std.summary()
+model_sep.summary()
