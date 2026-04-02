@@ -14,3 +14,13 @@ model_direct = keras.Sequential([
     layers.Input(shape=input_shape),
     layers.Conv2D(256, (3, 3), padding='same', activation='relu')
 ], name="Model_Bez_Bottleneck")
+
+model_bottleneck = keras.Sequential([
+    layers.Input(shape=input_shape),
+    # Redukcja kanałów (bottleneck): 128 --> 32
+    layers.Conv2D(32, (1, 1), activation='relu'),
+    # Konwolucja na mniejszej liczbie kanałów
+    layers.Conv2D(32, (3, 3), padding='same', activation='relu'),
+    # Ekspansja kanałów: 32 --> 256
+    layers.Conv2D(256, (1, 1), activation='relu')
+], name="Model_Z_Bottleneck")
