@@ -24,3 +24,6 @@ model_bottleneck = keras.Sequential([
     # Ekspansja kanałów: 32 --> 256
     layers.Conv2D(256, (1, 1), activation='relu')
 ], name="Model_Z_Bottleneck")
+
+params_direct = model_direct.count_params()
+params_bottleneck = model_bottleneck.count_params()
