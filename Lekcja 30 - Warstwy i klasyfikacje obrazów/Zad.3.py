@@ -35,3 +35,9 @@ def build_model(conv_type='standard'):
 model_std = build_model(conv_type='standard')
 model_sep = build_model(conv_type='separable')
 
+params_std = model_std.count_params()
+params_sep = model_sep.count_params()
+
+print(f"Liczba parametrów (Conv2D):          {params_std:,}")
+print(f"Liczba parametrów (SeparableConv2D): {params_sep:,}")
+print(f"Różnica: SeparableConv2D jest {params_std / params_sep:.1f}x mniejszy.")
