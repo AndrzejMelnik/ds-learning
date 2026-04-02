@@ -31,3 +31,6 @@ params_bottleneck = model_bottleneck.count_params()
 print(f"Liczba parametrów (Bez bottleneck): {params_direct:,}")
 print(f"Liczba parametrów (Z bottleneck):   {params_bottleneck:,}")
 print(f"Różnica: Wariant z bottleneck ma {params_direct / params_bottleneck:.1f}x mniej parametrów!")
+
+model_direct.summary()
+model_bottleneck.summary()
