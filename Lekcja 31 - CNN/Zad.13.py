@@ -18,3 +18,4 @@ results = model.predict(source=images, conf=0.25)
 
 for i, result in enumerate(results):
     result.show()
+    print(f"Obraz {i + 1}: Znaleziono {len(result.boxes)} obiektów.")
