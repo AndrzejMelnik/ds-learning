@@ -14,3 +14,4 @@ images = [
     'https://upload.wikimedia.org/wikipedia/commons/c/c1/Ed_Sheeran-6886.jpg',
     'https://upload.wikimedia.org/wikipedia/commons/d/d4/Lady_Gaga_at_the_TIFF_in_2017.jpg'
 ]
+results = model.predict(source=images, conf=0.25)
