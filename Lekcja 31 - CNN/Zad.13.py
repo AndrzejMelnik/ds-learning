@@ -15,3 +15,6 @@ images = [
     'https://upload.wikimedia.org/wikipedia/commons/d/d4/Lady_Gaga_at_the_TIFF_in_2017.jpg'
 ]
 results = model.predict(source=images, conf=0.25)
+
+for i, result in enumerate(results):
+    result.show()
