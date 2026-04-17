@@ -10,6 +10,8 @@ Interpretacja"""
 
 from tensorflow import keras
 from tensorflow.keras import layers
+import time
+from tensorflow.keras.callbacks import EarlyStopping
 
 max_features = 10000
 maxlen_values = [2-5]
@@ -28,3 +30,15 @@ for ml in maxlen_values:
     ])
 
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+
+start_time = time.time()
+
+history = model.fit(
+    x_train, y_train,
+    epochs=5,
+    batch_size=128,
+    validation_split=0.2,
+    callbacks=[EarlyStopping(patience=2, restore_best_weights=True)],
+    verbose=0
+)
+elapsed_time = time.time() - start_time
