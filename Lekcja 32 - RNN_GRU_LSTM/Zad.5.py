@@ -42,3 +42,12 @@ history = model.fit(
     verbose=0
 )
 elapsed_time = time.time() - start_time
+
+_, test_acc = model.evaluate(x_test, y_test, verbose=0)
+
+results.append({
+    'maxlen': ml,
+    'accuracy': round(test_acc, 4),
+    'czas_treningu_s': round(elapsed_time, 2)
+})
+print(f"Wynik dla {ml}: Accuracy = {test_acc:.4f}, Czas = {elapsed_time:.2f}s")
