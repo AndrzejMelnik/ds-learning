@@ -8,6 +8,7 @@
 Tabela: maxlen, accuracy, czas treningu
 Interpretacja"""
 import pandas as pd
+from matplotlib import pyplot as plt
 from tensorflow import keras
 from tensorflow.keras import layers
 import time
@@ -54,3 +55,19 @@ print(f"Wynik dla {ml}: Accuracy = {test_acc:.4f}, Czas = {elapsed_time:.2f}s")
 
 df_results = pd.DataFrame(results)
 print(df_results)
+
+fig, ax1 = plt.subplots(figsize=(10, 6))
+
+ax1.set_xlabel('Długość sekwencji (maxlen)')
+ax1.set_ylabel('Accuracy', color='tab:blue')
+ax1.plot(df_results['maxlen'], df_results['accuracy'], color='tab:blue', marker='o', label='Accuracy')
+ax1.tick_params(axis='y', labelcolor='tab:blue')
+
+ax2 = ax1.twinx()
+ax2.set_ylabel('Czas treningu (s)', color='tab:red')
+ax2.plot(df_results['maxlen'], df_results['czas_treningu_s'], color='tab:red', marker='s', label='Czas')
+ax2.tick_params(axis='y', labelcolor='tab:red')
+
+plt.title('Wpływ maxlen na wyniki modelu LSTM')
+plt.grid(True, alpha=0.3)
+plt.show()
