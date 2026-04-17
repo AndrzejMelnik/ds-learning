@@ -28,3 +28,5 @@ history = model_lstm.fit(
     callbacks=[EarlyStopping(patience=3, restore_best_weights=True)],
     verbose=1
 )
+test_loss, test_acc = model_lstm.evaluate(x_test, y_test, verbose=0)
+print(f"\nAccuracy modelu LSTM: {test_acc:.4f}")
