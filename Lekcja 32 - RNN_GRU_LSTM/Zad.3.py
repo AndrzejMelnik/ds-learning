@@ -1,3 +1,4 @@
+from matplotlib import pyplot as plt
 from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.callbacks import EarlyStopping
@@ -30,3 +31,18 @@ history = model_lstm.fit(
 )
 test_loss, test_acc = model_lstm.evaluate(x_test, y_test, verbose=0)
 print(f"\nAccuracy modelu LSTM: {test_acc:.4f}")
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
+
+ax1.plot(history.history['loss'], label='Train Loss')
+ax1.plot(history.history['val_loss'], label='Val Loss')
+ax1.set_title('Krzywa Straty (Loss)')
+ax1.legend()
+
+ax2.plot(history.history['accuracy'], label='Train Acc')
+ax2.plot(history.history['val_accuracy'], label='Val Acc')
+ax2.set_title('Krzywa Dokładności (Accuracy)')
+ax2.legend()
+
+plt.tight_layout()
+plt.show()Wy
