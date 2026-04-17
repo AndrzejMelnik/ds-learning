@@ -7,7 +7,7 @@
 4 eksperymenty z roznym maxlen
 Tabela: maxlen, accuracy, czas treningu
 Interpretacja"""
-
+import pandas as pd
 from tensorflow import keras
 from tensorflow.keras import layers
 import time
@@ -51,3 +51,6 @@ results.append({
     'czas_treningu_s': round(elapsed_time, 2)
 })
 print(f"Wynik dla {ml}: Accuracy = {test_acc:.4f}, Czas = {elapsed_time:.2f}s")
+
+df_results = pd.DataFrame(results)
+print(df_results)
