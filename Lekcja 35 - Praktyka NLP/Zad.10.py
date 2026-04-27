@@ -8,7 +8,7 @@ Pretrenowanymi GloVe (zamrozonymi, trainable=False)
 Pretrenowanymi GloVe (odblokowanymi, trainable=True)"""
 
 from tensorflow import keras
-
+from tensorflow.keras import layers
 max_features = 10000
 maxlen = 200
 
@@ -16,3 +16,12 @@ maxlen = 200
 x_train = keras.preprocessing.sequence.pad_sequences(x_train, maxlen=maxlen)
 x_test = keras.preprocessing.sequence.pad_sequences(x_test, maxlen=maxlen)
 
+def build_model(embedding_layer, name):
+    model = keras.Sequential([
+        layers.Input(shape=(maxlen,)),
+        embedding_layer,
+        layers.LSTM(64, dropout=0.3, recurrent_dropout=0.2), # Parametry stabilizujące [3]
+        layers.Dense(1, activation='sigmoid')
+    ], name=name)
+    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+    return model
