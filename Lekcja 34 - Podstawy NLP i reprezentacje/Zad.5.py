@@ -6,6 +6,7 @@ Oczekiwany wynik: wykres PCA z pogrupowanymi slowami"""
 
 from gensim.models import Word2Vec
 import numpy as np
+from sklearn.decomposition import PCA
 
 sentences = [
     ["mały", "biały", "pies", "biega"], ["duży", "czarny", "pies", "szczeka"],
@@ -32,3 +33,6 @@ model = Word2Vec(
 
 words = list(model.wv.index_to_key)
 word_vectors = np.array([model.wv[w] for w in words])
+
+pca = PCA(n_components=2)
+result = pca.fit_transform(word_vectors)
