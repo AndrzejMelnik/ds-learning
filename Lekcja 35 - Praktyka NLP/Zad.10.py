@@ -10,6 +10,7 @@ Pretrenowanymi GloVe (odblokowanymi, trainable=True)"""
 from tensorflow import keras
 from tensorflow.keras import layers
 import numpy as np
+from tensorflow.keras.callbacks import EarlyStopping
 
 max_features = 10000
 maxlen = 200
@@ -51,3 +52,18 @@ emb_unfrozen = layers.Embedding(
     trainable=True
 )
 model_unfrozen = build_lstm_model(emb_unfrozen, "LSTM_GloVe_Unfrozen")
+
+callback = EarlyStopping(monitor='val_loss', patience=3, restore_best_weights=True)
+
+print(f"\nRozpoczynanie treningu modelu: {model_scratch.name}")
+history = model_scratch.fit(
+    x_train, y_train,
+    epochs=10,
+    batch_size=128,
+    validation_split=0.2,
+    callbacks=[callback],
+    verbose=1
+)
+
+loss, acc = model_scratch.evaluate(x_test, y_test, verbose=0)
+print(f"\nWynik {model_scratch.name} -> Accuracy: {acc:.4f}")
