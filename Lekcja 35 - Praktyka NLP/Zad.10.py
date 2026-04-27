@@ -25,3 +25,6 @@ def build_model(embedding_layer, name):
     ], name=name)
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
     return model
+
+emb_scratch = layers.Embedding(max_features, 100, trainable=True)
+model_scratch = build_model(emb_scratch, "LSTM_Scratch")
