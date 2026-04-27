@@ -7,6 +7,7 @@ Oczekiwany wynik: wykres PCA z pogrupowanymi slowami"""
 from gensim.models import Word2Vec
 import numpy as np
 from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
 
 sentences = [
     ["mały", "biały", "pies", "biega"], ["duży", "czarny", "pies", "szczeka"],
@@ -36,3 +37,13 @@ word_vectors = np.array([model.wv[w] for w in words])
 
 pca = PCA(n_components=2)
 result = pca.fit_transform(word_vectors)
+
+plt.figure(figsize=(12, 10))
+plt.scatter(result[:, 0], result[:, 1], edgecolors='k', c='lightblue', s=100)
+for i, word in enumerate(words):
+    plt.annotate(word, xy=(result[i, 0], result[i, 1]), xytext=(5, 2),
+                 textcoords='offset points', fontsize=12)
+
+plt.title('Wizualizacja embeddingów Word2Vec (PCA 2D)', fontsize=15, fontweight='bold')
+plt.grid(True, alpha=0.3)
+plt.show()
