@@ -44,3 +44,10 @@ emb_frozen = layers.Embedding(
     trainable=False
 )
 model_frozen = build_lstm_model(emb_frozen, "LSTM_GloVe_Frozen")
+
+emb_unfrozen = layers.Embedding(
+    max_features, embed_dim,
+    embeddings_initializer=keras.initializers.Constant(embedding_matrix),
+    trainable=True
+)
+model_unfrozen = build_lstm_model(emb_unfrozen, "LSTM_GloVe_Unfrozen")
