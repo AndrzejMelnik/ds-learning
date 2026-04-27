@@ -11,10 +11,9 @@ from tensorflow import keras
 from tensorflow.keras import layers
 import numpy as np
 
-max_features = 10000  # Rozmiar słownika [3]
-maxlen = 200          # Dobry kompromis dla recenzji IMDB [4]
-embed_dim = 100       # Standardowy wymiar dla GloVe [5]
-
+max_features = 10000
+maxlen = 200
+embed_dim = 100
 (x_train, y_train), (x_test, y_test) = keras.datasets.imdb.load_data(num_words=max_features)
 x_train = keras.preprocessing.sequence.pad_sequences(x_train, maxlen=maxlen)
 x_test = keras.preprocessing.sequence.pad_sequences(x_test, maxlen=maxlen)
@@ -38,3 +37,10 @@ def build_lstm_model(embedding_layer, name):
 
 emb_scratch = layers.Embedding(max_features, embed_dim, trainable=True)
 model_scratch = build_lstm_model(emb_scratch, "LSTM_Scratch")
+
+emb_frozen = layers.Embedding(
+    max_features, embed_dim,
+    embeddings_initializer=keras.initializers.Constant(embedding_matrix),
+    trainable=False
+)
+model_frozen = build_lstm_model(emb_frozen, "LSTM_GloVe_Frozen")
