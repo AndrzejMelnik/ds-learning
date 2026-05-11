@@ -9,13 +9,10 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier,GradientBoostingClassifier
+
+from fastapi import FastAPI,HTTPException
 import joblib
 
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-import joblib
-import numpy as np
-from typing import Dict
 from typing import List, Annotated
 from pydantic import BaseModel, Field
 
@@ -62,3 +59,23 @@ def predict_v3(input_data: PredictionInput):
     """Predykcja modelem GradientBoosting (v3)."""
     prediction = models["v3"].predict([input_data.features])
     return {"version": "v3", "model": "GradientBoosting", "prediction": int(prediction)}
+
+
+@app.post("/predict/compare")
+def compare_models(input_data: PredictionInput):
+    """Zwraca predykcje ze wszystkich modeli naraz."""
+    results = {}
+    for version, model in models.items():
+        pred = model.predict([input_data.features])
+        results[version] = int(pred)
+
+    return {
+        "input_summary": "Breast Cancer Data",
+        "predictions": results,
+        "consistent": len(set(results.values())) == 1
+    }
+
+
+@app.get("/health")
+def health_check():
+    return {"status": "online", "models_loaded": list(models.keys())}
