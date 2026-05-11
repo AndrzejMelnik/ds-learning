@@ -79,3 +79,6 @@ def compare_models(input_data: PredictionInput):
 @app.get("/health")
 def health_check():
     return {"status": "online", "models_loaded": list(models.keys())}
+
+"""Uruchomienie w terminalu komendą uvicorn Zad13:app --reload
+ w przeglądarce: http://127.0.0.1:8000/docs#/default/predict_v2_predict_v2_post"""
