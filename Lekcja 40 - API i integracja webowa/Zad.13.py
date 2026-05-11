@@ -44,3 +44,21 @@ try:
 except FileNotFoundError:
     print("Błąd: Pliki modeli nie istnieją. Uruchom najpierw skrypt trenujący.")
     models = {}
+
+@app.post("/predict/v1")
+def predict_v1(input_data: PredictionInput):
+    """Predykcja modelem LogisticRegression (v1)."""
+    prediction = models["v1"].predict([input_data.features])
+    return {"version": "v1", "model": "LogisticRegression", "prediction": int(prediction)}
+
+@app.post("/predict/v2")
+def predict_v2(input_data: PredictionInput):
+    """Predykcja modelem RandomForest (v2)."""
+    prediction = models["v2"].predict([input_data.features])
+    return {"version": "v2", "model": "RandomForest", "prediction": int(prediction)}
+
+@app.post("/predict/v3")
+def predict_v3(input_data: PredictionInput):
+    """Predykcja modelem GradientBoosting (v3)."""
+    prediction = models["v3"].predict([input_data.features])
+    return {"version": "v3", "model": "GradientBoosting", "prediction": int(prediction)}
