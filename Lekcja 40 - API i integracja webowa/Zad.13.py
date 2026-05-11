@@ -32,3 +32,15 @@ joblib.dump(model_v3, "model_v3.pkl")
 
 class PredictionInput(BaseModel):
     features: Annotated[List[float], Field(min_length=30, max_length=30)]
+
+app = FastAPI(title="Multi-Model ML API")
+
+try:
+    models = {
+        "v1": joblib.load("model_v1.pkl"),
+        "v2": joblib.load("model_v2.pkl"),
+        "v3": joblib.load("model_v3.pkl")
+    }
+except FileNotFoundError:
+    print("Błąd: Pliki modeli nie istnieją. Uruchom najpierw skrypt trenujący.")
+    models = {}
