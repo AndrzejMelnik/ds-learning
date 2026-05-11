@@ -45,4 +45,4 @@ ax2.set_title('Krzywa Dokładności (Accuracy)')
 ax2.legend()
 
 plt.tight_layout()
-plt.show()Wy
+plt.show()
