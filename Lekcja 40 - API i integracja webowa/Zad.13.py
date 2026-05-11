@@ -11,6 +11,14 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier,GradientBoostingClassifier
 import joblib
 
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+import joblib
+import numpy as np
+from typing import Dict
+from typing import List, Annotated
+from pydantic import BaseModel, Field
+
 data = load_breast_cancer()
 X, y = data.data, data.target
 
@@ -21,3 +29,6 @@ model_v3 = GradientBoostingClassifier(n_estimators=100).fit(X, y)
 joblib.dump(model_v1, "model_v1.pkl")
 joblib.dump(model_v2, "model_v2.pkl")
 joblib.dump(model_v3, "model_v3.pkl")
+
+class PredictionInput(BaseModel):
+    features: Annotated[List[float], Field(min_length=30, max_length=30)]
