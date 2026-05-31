@@ -1,0 +1,18 @@
+# Dane (nie wysyłamy surowych danych)
+data/raw/*
+data/processed/*
+
+# Modele (wysyłamy tylko metadane JSON)
+models/*.pkl
+models/*.pth
+
+# Python i IDE
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+.idea/
+.vscode/
+
+# Logi i wyniki eksperymentów
+mlruns/
+*.log
